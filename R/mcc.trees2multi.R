@@ -15,14 +15,14 @@
 #' # [1] "multiPhylo"
 
 mcc.trees2multi <- function(path="."){
-	tnames <- dir(path)
-	files <- paste0(path,"/",tnames)
-	trs <- lapply(files, read.beast.annot)
-	msg <- paste("Read",length(trs),"trees")
-	message(msg)
-	class(trs) <- "multiPhylo"
-	names(trs) <- tnames
-	return(trs)
+    tnames <- dir(path)
+    files <- paste0(path,"/",tnames)
+    trs <- lapply(files, read.beast.annot)
+    msg <- paste("Read",length(trs),"trees")
+    message(msg)
+    class(trs) <- "multiPhylo"
+    names(trs) <- tnames
+    return(trs)
 }
 
 
