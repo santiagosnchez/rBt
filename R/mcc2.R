@@ -1,4 +1,4 @@
-#' mcc
+#' mcc2
 #'
 #' This function is based on the \code{\link{maxCladeCred}}
 #' in \code{phangorn}, and it finds the maximum clade 
@@ -11,18 +11,18 @@
 #' @seealso \code{\link{maxCladeCred}} \code{\link{prop.part}}
 #' @importFrom fastmatch fmatch
 #' @importFrom phangorn checkLabels
-#' @export mcc
+#' @export mcc2
 #' @examples
 #' path <- system.file("data/trees/", package="rBt")
 #' trs <- mcc.trees2multi(path)
-#' mcctr <- mcc(trs)
+#' mcctr <- mcc2(trs)
 #' 
 #' 
 #' 
 #' 
 #' 
 
-mcc <- function(phy){
+mcc2 <- function(phy){
     pp <- prop.part(phy)
     pplabel <- attr(pp, "labels")
     m <- max(attr(pp, "number"))
