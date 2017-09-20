@@ -4,7 +4,7 @@
 \alias{mcc2}
 \title{mcc2}
 \usage{
-mcc(phy)
+mcc2(phy)
 }
 \arguments{
 \item{phy}{List of \code{multiPhylo} trees}
