@@ -25,44 +25,44 @@
 #' #[19] "length_95%_HPD_UPPER"   "edge.ordered"  
 
 read.beast.annot <- function(file){
-	tr <- read.nexus(paste(file))
-	perlscript <- system.file("data/Beast2AnnTabl.pl", package="rBt")
-	out <- system(paste("perl", perlscript, file, collapse=" "), intern=TRUE)
-	out <- strsplit(out, "\t")
-	df <- do.call(rbind.data.frame, args=list(out, stringsAsFactors=FALSE))
-	colnames(df) <- df[1,]
-	rownames(df) <- df[,1]
-	df <- as.data.frame(t(df[-1,-1]), stringsAsFactors=FALSE)
-	rmrange <- grep("range", colnames(df))
-	df <- df[,-rmrange]
-	spltind <- grep(",",df[dim(df)[1],])
-	dfsplt <- data.frame(rep(0,dim(df)[1]))
-	for (i in spltind){
-		tmp <- strsplit(df[,i], ",")
-		for (j in grep("NA",tmp))
-			tmp[[j]] <- c(NA,NA)
-		tmp <- as.numeric(unlist(tmp))
-		tmp <- data.frame(matrix(tmp, ncol=2, byrow=TRUE))
-		dfsplt <- cbind(dfsplt,tmp)
-	}
-	dfsplt <- dfsplt[,-1]
-	colnames(dfsplt) <- sort(c(paste(colnames(df)[spltind], "_LOWER", sep=""),paste(colnames(df)[spltind], "_UPPER", sep="")))
-	df <- df[,-spltind]
-	for (i in 1:dim(df)[2]){
-		df[ df[,i] == "NA" ,i] <- NA
-		df[ ,i] <- as.numeric(df[,i])
-	}
-	df <- cbind(df,dfsplt)
-	rt <- length(tr$tip.label)+1
-	nodes <- (length(tr$tip.label)+1):(length(tr$tip.label)+tr$Nnode)
-	tr$nodes <- nodes
-	for (i in colnames(df))
-		tr[[paste(i)]] <- df[rt:dim(df)[1],paste(i)]
-	pp <- prop.part(tr)
-	edg <- sapply(pp, function(x,y=tr) min(which.edge(y,x))-1 )
-	edg <- edg[-1]
-	tr$edge.ordered <- edg
-	return(tr)	
+    tr <- read.nexus(paste(file))
+    perlscript <- system.file("data/Beast2AnnTabl.pl", package="rBt")
+    out <- system(paste("perl", perlscript, file, collapse=" "), intern=TRUE)
+    out <- strsplit(out, "\t")
+    df <- do.call(rbind.data.frame, args=list(out, stringsAsFactors=FALSE))
+    colnames(df) <- df[1,]
+    rownames(df) <- df[,1]
+    df <- as.data.frame(t(df[-1,-1]), stringsAsFactors=FALSE)
+    rmrange <- grep("range", colnames(df))
+    df <- df[,-rmrange]
+    spltind <- grep(",",df[dim(df)[1],])
+    dfsplt <- data.frame(rep(0,dim(df)[1]))
+    for (i in spltind){
+        tmp <- strsplit(df[,i], ",")
+        for (j in grep("NA",tmp))
+            tmp[[j]] <- c(NA,NA)
+        tmp <- as.numeric(unlist(tmp))
+        tmp <- data.frame(matrix(tmp, ncol=2, byrow=TRUE))
+        dfsplt <- cbind(dfsplt,tmp)
+    }
+    dfsplt <- dfsplt[,-1]
+    colnames(dfsplt) <- sort(c(paste(colnames(df)[spltind], "_LOWER", sep=""),paste(colnames(df)[spltind], "_UPPER", sep="")))
+    df <- df[,-spltind]
+    for (i in 1:dim(df)[2]){
+        df[ df[,i] == "NA" ,i] <- NA
+        df[ ,i] <- as.numeric(df[,i])
+    }
+    df <- cbind(df,dfsplt)
+    rt <- length(tr$tip.label)+1
+    nodes <- (length(tr$tip.label)+1):(length(tr$tip.label)+tr$Nnode)
+    tr$nodes <- nodes
+    for (i in colnames(df))
+        tr[[paste(i)]] <- df[rt:dim(df)[1],paste(i)]
+    pp <- prop.part(tr)
+    edg <- sapply(pp, function(x,y=tr) min(which.edge(y,x))-1 )
+    edg <- edg[-1]
+    tr$edge.ordered <- edg
+    return(tr)
 }
 
 
