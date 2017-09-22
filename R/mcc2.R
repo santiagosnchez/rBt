@@ -10,7 +10,6 @@
 #' @return mcc tree \code{phylo} object
 #' @seealso \code{\link{maxCladeCred}} \code{\link{prop.part}}
 #' @importFrom fastmatch fmatch
-#' @importFrom phangorn checkLabels
 #' @export mcc2
 #' @examples
 #' path <- system.file("data/trees/", package="rBt")
