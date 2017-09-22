@@ -25,6 +25,10 @@
 #' 
 
 mcc2 <- function(phy, annot="pos"){
+    if (length(grep("posterior", names(phy[[1]])) == 1)
+        annot="pos"
+    else
+        annot="freq"
     pp <- prop.part(phy)
     pplabel <- attr(pp, "labels")
     m <- max(attr(pp, "number"))
@@ -45,13 +49,13 @@ mcc2 <- function(phy, annot="pos"){
     tr$clade.credibility <- res[k]
     ppk <- prop.part(tr)
     pmt <- matrix(NA,ncol=L, nrow=length(ppk))
-        for (i in 1:L){
+    for (i in 1:L){
         ppi <- prop.part(phy[[i]])
         indi <- fmatch(ppk, ppi)
         if (annot == "pos")
-            pmt[,i] <- phy[[i]]$posterior[indi]
+            pmt[,i] <- phy[[i]]$posterior[!is.na(indi)]
         else if (annot == "freq")
-            pmt[indi,i] <- 1
+            pmt[!is.na(indi),i] <- 1
         else 
             stop("annot needs to be either \"pos\" or \"freq\"")
     }
