@@ -25,7 +25,7 @@
 #' 
 
 mcc2 <- function(phy, annot="pos"){
-    if (length(grep("posterior", names(phy[[1]])) == 1)
+    if (length(grep("posterior", names(phy[[1]]))) == 1)
         annot="pos"
     else
         annot="freq"
