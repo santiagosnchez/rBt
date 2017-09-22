@@ -4,10 +4,14 @@
 \alias{mcc2}
 \title{mcc2}
 \usage{
-mcc2(phy)
+mcc2(phy, annot = "pos")
 }
 \arguments{
 \item{phy}{List of \code{multiPhylo} trees}
+
+\item{annot}{Inform whether \code{mcc2} should annotate on
+the mcc tree using \code{"freq"} frequencies or
+\code{"pos"} posterior probabilities.}
 }
 \value{
 mcc tree \code{phylo} object
