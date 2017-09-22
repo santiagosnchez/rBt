@@ -53,7 +53,7 @@ mcc2 <- function(phy, annot="pos"){
         ppi <- prop.part(phy[[i]])
         indi <- fmatch(ppk, ppi)
         if (annot == "pos")
-            pmt[,i] <- phy[[i]]$posterior[!is.na(indi)]
+            pmt[!is.na(indi),i] <- phy[[i]]$posterior[!is.na(indi)]
         else if (annot == "freq")
             pmt[!is.na(indi),i] <- 1
         else 
