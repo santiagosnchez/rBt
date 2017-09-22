@@ -7,6 +7,9 @@
 #' 
 #'
 #' @param phy List of \code{multiPhylo} trees
+#' @param annot Inform whether \code{mcc2} should annotate on
+#'              the mcc tree using \code{"freq"} frequencies or
+#'              \code{"pos"} posterior probabilities.
 #' @return mcc tree \code{phylo} object
 #' @seealso \code{\link{maxCladeCred}} \code{\link{prop.part}}
 #' @importFrom fastmatch fmatch
@@ -21,7 +24,7 @@
 #' 
 #' 
 
-mcc2 <- function(phy){
+mcc2 <- function(phy, annot="pos"){
     pp <- prop.part(phy)
     pplabel <- attr(pp, "labels")
     m <- max(attr(pp, "number"))
@@ -42,12 +45,20 @@ mcc2 <- function(phy){
     tr$clade.credibility <- res[k]
     ppk <- prop.part(tr)
     pmt <- matrix(NA,ncol=L, nrow=length(ppk))
-    for (i in 1:L){
+        for (i in 1:L){
         ppi <- prop.part(phy[[i]])
         indi <- fmatch(ppk, ppi)
-        pmt[,i] <- phy[[i]]$posterior[indi]
+        if (annot == "pos")
+            pmt[,i] <- phy[[i]]$posterior[indi]
+        else if (annot == "freq")
+            pmt[indi,i] <- 1
+        else 
+            stop("annot needs to be either \"pos\" or \"freq\"")
     }
     mcp <- rowSums(pmt, na.rm=TRUE)/L
-    tr$MCposterior <- mcp
+    if (annot == "pos")
+            tr$MCposterior <- mcp
+    else if (annot == "freq")
+            tr$freq <- mcp
     return(tr)
 }
