@@ -44,7 +44,7 @@ mcc2 <- function(phy, annot="pos"){
         else res[i] <- sum(nb[indi])
     }
     k <- which.max(res)
-    message("Clade credibility (log):",res[k],"\n")
+    message("Clade credibility (log): ",res[k])
     tr <- phy[[k]]
     tr$clade.credibility <- res[k]
     ppk <- prop.part(tr)
