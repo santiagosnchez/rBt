@@ -12,4 +12,13 @@ Open up an [R](https://www.r-project.org) console:
     library(devtools)
     install_github("santiagosnchez/rBt")
 
+## Functions
+
+* get.tip.spp
+* mcc.trees2multi
+* mcc2
+* order.edges
+* read.beast.annot
+* which.node
+
 
