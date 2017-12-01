@@ -21,6 +21,6 @@
 order.edges <- function(phy){
     pp <- prop.part(phy)
     edg <- sapply(pp, function(x,y=phy) min(which.edge(y,x))-1 )
-    edg <- edg[-1]
+    edg[1] <- NA
     return(edg)
 }
