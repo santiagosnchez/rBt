@@ -19,8 +19,8 @@
 #' edgelabels(edge=edges.ordered, text=nodes[-1]) # -1 is needed to exclude the root node
 
 order.edges <- function(phy){
-    pp <- fastmatch::prop.part(phy)
-    edg <- sapply(pp, function(x,y=phy) min(ape::which.edge(y,x))-1 )
+    pp <- prop.part(phy)
+    edg <- sapply(pp, function(x,y=phy) min(which.edge(y,x))-1 )
     edg[1] <- NA
     return(edg)
 }
