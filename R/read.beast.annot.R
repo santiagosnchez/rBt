@@ -35,7 +35,7 @@ read.beast.annot <- function(file){
     df <- as.data.frame(t(df[-1,-1]), stringsAsFactors=FALSE)
     rmrange <- grep("range", colnames(df))
     df <- df[,-rmrange]
-    spltind <- grep(",",df[dim(df)[1],])
+    spltind <- grep("HPD",df[dim(df)[1],])
     dfsplt <- data.frame(rep(0,dim(df)[1]))
     for (i in spltind){
         tmp <- strsplit(df[,i], ",")
