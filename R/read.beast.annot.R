@@ -61,6 +61,7 @@ read.beast.annot <- function(file){
     edg <- sapply(pp, function(x,y=tr) min(which.edge(y,x))-1 )
     edg <- edg[-1]
     tr$edge.ordered <- edg
+    tr$data <- df
     return(tr)
 }
 
