@@ -20,7 +20,7 @@ annotations. Node ordering is the same as in the
 read.tree/read.nexus function from ape (cladewise).
 }
 \examples{
-file <- system.file("data/trees/mcc.tre", package="rBt")
+file <- system.file("data/mcc.tre", package="rBt")
 tr <- read.beast.annot(file)
 class(tr)
 # [1] "phylo"
