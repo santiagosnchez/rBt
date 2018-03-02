@@ -31,7 +31,7 @@ names(tr)
 #[10] "height_median"          "length"                 "length_median"         
 #[13] "posterior"              "CAheight_95\%_HPD_LOWER" "CAheight_95\%_HPD_UPPER"
 #[16] "height_95\%_HPD_LOWER"   "height_95\%_HPD_UPPER"   "length_95\%_HPD_LOWER"  
-#[19] "length_95\%_HPD_UPPER"   "edge.ordered"  
+#[19] "length_95\%_HPD_UPPER"   "edge.ordered"           "data"
 }
 \seealso{
 \code{\link{read.nexus}}
