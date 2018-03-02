@@ -98,11 +98,13 @@ my %getNames=();
 map { map { $getNames{$_} = "" } keys %{$annotData{$_}} } keys %annotData;
 my @annotNames = sort {$a cmp $b} keys %getNames;
 
+print "@annotNames\n";
+exit;
+
 print join("\t", ("node",@annotNames)) . "\n";
 for $node (sort {$a <=> $b} keys %annotData){
 	print $node . "\t";
 	for $ann (@annotNames){
-		next if ($ann =~ m/\.set/);
 		if ($ann ne $annotNames[$#annotNames]){
 			if ($annotData{$node}{$ann}){
 				print $annotData{$node}{$ann} . "\t";
