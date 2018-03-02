@@ -12,15 +12,15 @@ Open up an [R](https://www.r-project.org) console:
     library(devtools)
     install_github("santiagosnchez/rBt")
 
-## Functions
+## Some functions
 
-* get.tip.spp
-* mcc.trees2multi
-* mcc2
-* order.edges
+* [get.tip.spp](https://github.com/santiagosnchez/rBt/blob/master/R/get.tip.spp.R)
+* [mcc.trees2multi](https://github.com/santiagosnchez/rBt/blob/master/R/mcc.trees2multi.R)
+* [mcc2](https://github.com/santiagosnchez/rBt/blob/master/R/mcc2.R)
+* [order.edges](https://github.com/santiagosnchez/rBt/blob/master/R/order.edges.R)
 * [read.beast.annot](https://github.com/santiagosnchez/rBt/blob/master/R/read.beast.annot.R)
-* which.node
-* plot.phylo.HPD
+* [which.node](https://github.com/santiagosnchez/rBt/blob/master/R/which.node.R)
+* [plot.phylo.HPD](https://github.com/santiagosnchez/rBt/blob/master/R/plot.phylo.HPD.R)
 
 ## Examples
 
