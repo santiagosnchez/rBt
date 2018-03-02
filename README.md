@@ -25,4 +25,6 @@ Open up an [R](https://www.r-project.org) console:
 
 Run the function with `?` in front (e.g. `?mcc2`) to access the help files, which have examples and more information.
 
+## Citation
 
+Sánchez-Ramírez, S. (2018) rBt: Handy functions for dealing with BEAST trees in R, GitHub repository: https://github.com/santiagosnchez/rBt
