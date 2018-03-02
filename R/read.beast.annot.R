@@ -49,8 +49,7 @@ read.beast.annot <- function(file){
     colnames(dfsplt) <- sort(c(paste(colnames(df)[spltind], "_LOWER", sep=""),paste(colnames(df)[spltind], "_UPPER", sep="")))
     df <- df[,-spltind]
     for (i in 1:dim(df)[2]){
-        df[ df[,i] == "NA" ,i] <- NA
-        df[ ,i] <- as.numeric(df[,i])
+        df[,i] <- type.convert(df[,i], as.is=T)
     }
     df <- cbind(df,dfsplt)
     rt <- length(tr$tip.label)+1
