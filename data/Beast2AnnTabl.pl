@@ -104,20 +104,14 @@ for $node (sort {$a <=> $b} keys %annotData){
 	for $ann (@annotNames){
 		if ($ann ne $annotNames[$#annotNames]){
 			if ($annotData{$node}{$ann}){
-				if ($annotData{$node}{$ann} =~ m/,/){
-					$annotData{$node}{$ann} =~ s/\"//g;
-					$annotData{$node}{$ann} = "\"$annotData{$node}{$ann}\""
-				}
+				$annotData{$node}{$ann} =~ s/\"//g;
 				print $annotData{$node}{$ann} . "\t";
 			} else {
 				print "NA" . "\t";
 			}
 		} else {
 			if ($annotData{$node}{$ann}){
-				if ($annotData{$node}{$ann} =~ m/,/){
-					$annotData{$node}{$ann} =~ s/\"//g;
-					$annotData{$node}{$ann} = "\"$annotData{$node}{$ann}\""
-				}
+				$annotData{$node}{$ann} =~ s/\"//g;
 				print $annotData{$node}{$ann} . "\n";
 			} else {
 				print "NA" . "\n";
