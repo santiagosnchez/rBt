@@ -18,7 +18,7 @@ Open up an [R](https://www.r-project.org) console:
 * mcc.trees2multi
 * mcc2
 * order.edges
-* read.beast.annot
+* [read.beast.annot](https://github.com/santiagosnchez/rBt/blob/master/R/read.beast.annot.R)
 * which.node
 * plot.phylo.HPD
 
