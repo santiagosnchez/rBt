@@ -102,6 +102,7 @@ print join("\t", ("node",@annotNames)) . "\n";
 for $node (sort {$a <=> $b} keys %annotData){
 	print $node . "\t";
 	for $ann (@annotNames){
+		next if ($ann =~ m/\.set/);
 		if ($ann ne $annotNames[$#annotNames]){
 			if ($annotData{$node}{$ann}){
 				print $annotData{$node}{$ann} . "\t";
