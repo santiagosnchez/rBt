@@ -57,10 +57,7 @@ read.beast.annot <- function(file){
     tr$nodes <- nodes
     for (i in colnames(df))
         tr[[paste(i)]] <- df[rt:dim(df)[1],paste(i)]
-    pp <- prop.part(tr)
-    edg <- sapply(pp, function(x,y=tr) min(which.edge(y,x))-1 )
-    edg <- edg[-1]
-    tr$edge.ordered <- edg
+    tr$edge.ordered <- which(tr$edge[,2] %in% tr$nodes)
     tr$data <- df
     return(tr)
 }
