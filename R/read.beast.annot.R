@@ -11,7 +11,7 @@
 #' @seealso \code{\link{read.nexus}}
 #' @export
 #' @examples
-#' file <- system.file("data/trees/mcc.tre", package="rBt")
+#' file <- system.file("data/mcc.tre", package="rBt")
 #' tr <- read.beast.annot(file)
 #' class(tr)
 #' # [1] "phylo"
