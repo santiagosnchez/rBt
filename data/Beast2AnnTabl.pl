@@ -31,7 +31,7 @@ while(<>){
 }
 
 my ($nexTree) = grep { /^\t*tree/ } @nexus;
-$nexTree =~ s/tree TREE1 \= \[&R\] //;
+$nexTree =~ s/^.*?\(/\(/;
 
 my @edges = split(/:/, $nexTree);
 
@@ -40,7 +40,8 @@ my @phylo=();
 my @nodesNtips=();
 
 foreach (@edges){
-	$_ =~ m/\[.+?\]/smp;
+	$_ =~ s/^\[.+?\]//;
+	$_ =~ m/\[.+?\]$/smp;
 	my $ann = ${^MATCH};
 	my $pre = ${^PREMATCH};
 	$pre =~ m/[\(,](\d+)$/;
