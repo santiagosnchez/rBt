@@ -7,10 +7,11 @@ Description: This packages  is a small compilation of scripts that
        in a R framework. It includes functions to read meta-data and
        annotation from BEAST-generated trees, including MCC trees. It
        is also designed to handle phylogenomic data.
-Depends: R (>= 3.4.1), ape, phangorn
+Depends: R (>= 3.4.1), ape, phangorn, sp
 Imports:
     ape,
     phangorn,
+    sp,
 License: GPL
 Encoding: UTF-8
 LazyData: true
