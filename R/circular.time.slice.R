@@ -8,10 +8,6 @@
 #' @param end end of the time slice (upper)
 #' @param col choose color (default = "grey")
 #' @seealso \code{\link{plot.phylo}} \code{\link{sp}}
-#' @importFrom sp Polygon
-#' @importFrom sp Polygons
-#' @importFrom sp SpatialPolygons
-#' @importFrom sp SpatialPolygonsDataFrame
 #' @export circular.time.slice
 #' @examples
 #' path <- system.file("data/mcc.tre", package="rBt")
@@ -23,7 +19,6 @@
 #' # plot tree
 #' plot(tr, type="fan", show.tip.label=F)
 #' # add slice
-#' addCircularTimeSlice(tr, 20, 50, "blue")
 #' for (i in 1:dim(ts)[1])
 #'    circular.time.slice(tr, ts[i,1], ts[i,2])
 
