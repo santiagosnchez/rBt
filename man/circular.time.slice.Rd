@@ -29,7 +29,6 @@ ts <- cbind(timeslices[-5], timeslices[-5]+((timeslices[3]-timeslices[2])/2))
 # plot tree
 plot(tr, type="fan", show.tip.label=F)
 # add slice
-addCircularTimeSlice(tr, 20, 50, "blue")
 for (i in 1:dim(ts)[1])
    circular.time.slice(tr, ts[i,1], ts[i,2])
 }
