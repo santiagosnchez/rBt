@@ -4,7 +4,7 @@
 \alias{plot.phylo.HPD}
 \title{plot.phylo.HPD}
 \usage{
-\method{plot}{phylo.HPD}(x, nodes = NULL, bar.width = 0.3, bar.col = NA,
+plot.phylo.HPD(x, nodes = NULL, bar.width = 0.3, bar.col = NA,
   border = NULL, ...)
 }
 \arguments{
