@@ -1,4 +1,4 @@
-#' read.beast.annot2
+#' rread.annot.beast
 #'
 #' This function reads a nexus formated MCC beast file and 
 #' appends all meta-data and annotations. It uses a Perl 
@@ -24,7 +24,7 @@
 #' #[16] "height_95%_HPD_LOWER"   "height_95%_HPD_UPPER"   "length_95%_HPD_LOWER"  
 #' #[19] "length_95%_HPD_UPPER"   "edge.ordered"           "data"
 
-read.annot.beast2 <- function(file){
+read.annot.beast <- function(file){
 	TREE <- scan(file=file, what=character(), sep="\n", quiet=T)
 	TREE <- TREE[ grep("^tree", TREE) ]
 	if (length(TREE) > 1){
@@ -78,8 +78,10 @@ read.annot.beast2 <- function(file){
 			annot_mat <- annot_mat[order(annot_mat[,1]),]
 			rownames(annot_mat) <- 1:dim(annot_mat)[1]
 			trs[[itr]]$metadata <- annot_mat
+			trs[[itr]]$posterior <- as.numeric(annot_mat$posterior[lst$currnode:length(nodes)])
+			cat("tree #",itr,"\r",sep='')
 		}
-		message(paste("Read ",length(trs)," trees"))
+		message(paste("\nRead ",length(trs)," trees"))
 		return(trs)
 	} else {
 		tr <- TREE[[1]]
@@ -131,6 +133,7 @@ read.annot.beast2 <- function(file){
 		rownames(annot_mat) <- 1:dim(annot_mat)[1]
 		tr <- read.nexus(file)
 		tr$metadata <- annot_mat
+		tr$posterior <- as.numeric(annot_mat$posterior[lst$currnode:length(nodes)])
 		return(tr)
 	}
 }
