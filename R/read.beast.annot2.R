@@ -60,11 +60,11 @@ read.annot.beast2 <- function(file){
 			Nnodes <- length(nodesidx)
 			lst <- list(opened=vector(), closed=vector(), currnode=Ntips)
 			for (b in backbone){
-				lst <- .cldws(b, lst)
+				lst <- rBt:::cldws(b, lst)
 			}
 			nodes[nodesidx] <- as.character(lst$closed)
 			nodes <- sapply(nodes, as.numeric)
-			annot <- lapply(annot, .process_annot)
+			annot <- lapply(annot, rBt:::process_annot)
 			annot_names <- sort(unlist(lapply(annot, function(x) names(x) )))
 			annot_names <- annot_names[ !duplicated(annot_names) ]
 			annot_mat <- data.frame(matrix(NA, ncol=length(annot_names)+1, nrow=length(nodes)))
@@ -112,11 +112,11 @@ read.annot.beast2 <- function(file){
 		Nnodes <- length(nodesidx)
 		lst <- list(opened=vector(), closed=vector(), currnode=Ntips)
 		for (b in backbone){
-			lst <- .cldws(b, lst)
+			lst <- rBt:::cldws(b, lst)
 		}
 		nodes[nodesidx] <- as.character(lst$closed)
 		nodes <- sapply(nodes, as.numeric)
-		annot <- lapply(annot, .process_annot)
+		annot <- lapply(annot, rBt:::process_annot)
 		annot_names <- sort(unlist(lapply(annot, function(x) names(x) )))
 		annot_names <- annot_names[ !duplicated(annot_names) ]
 		annot_mat <- data.frame(matrix(NA, ncol=length(annot_names)+1, nrow=length(nodes)))
