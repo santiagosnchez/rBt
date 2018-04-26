@@ -1,10 +1,16 @@
 #' rread.annot.beast
 #'
-#' This function reads a nexus formated MCC beast file and 
-#' appends all meta-data and annotations. It uses a Perl 
-#' script internally that quickly generates a table with 
-#' annotations. Node ordering is the same as in the 
-#' read.tree/read.nexus function from ape (cladewise).
+#' @description
+#' This function reads a nexus formated beast file and 
+#' appends all meta-data and annotations. 
+#' 
+#' @details
+#' Node ordering is the same as in the \code{read.tree}/\code{read.nexus}
+#' functions from ape (cladewise). The metadata is stored as a 
+#' data.frame named 'metadata'. Only node posterior
+#' probabilites are passed as an additional numeric vector
+#' named 'posterior'. Note that 'metadata' includes tip 
+#' annotations as well. The code might be a bit slow for large trees.
 #'
 #' @param file The path to the MCC file from BEAST
 #' @return annotated \code{phylo} object
@@ -12,17 +18,19 @@
 #' @export
 #' @examples
 #' file <- system.file("data/mcc.tre", package="rBt")
-#' tr <- read.beast.annot(file)
+#' tr <- read.annot.beast(file)
 #' class(tr)
 #' # [1] "phylo"
 #' names(tr)
-#' # [1] "edge"                   "edge.length"            "Nnode"                 
-#' # [4] "root.edge"              "tip.label"              "nodes"                 
-#' # [7] "CAheight_mean"          "CAheight_median"        "height"                
-#' #[10] "height_median"          "length"                 "length_median"         
-#' #[13] "posterior"              "CAheight_95%_HPD_LOWER" "CAheight_95%_HPD_UPPER"
-#' #[16] "height_95%_HPD_LOWER"   "height_95%_HPD_UPPER"   "length_95%_HPD_LOWER"  
-#' #[19] "length_95%_HPD_UPPER"   "edge.ordered"           "data"
+#' #[1] "edge"        "edge.length" "Nnode"       "root.edge"   "tip.label"  
+#' #[6] "metadata"    "posterior"
+#' # for add pp to nodes you could try:
+#' plot(tr)
+#' nodelabels(text=round(tr$posterior,2), cex=0.5)
+#' # for edges, try:
+#' tr$ordered.edges <- order.edges(tr)
+#' plot(tr)
+#' edgelabels(edge=tr$ordered.edges, text=round(tr$posterior,2), cex=0.5)
 
 read.annot.beast <- function(file){
 	TREE <- scan(file=file, what=character(), sep="\n", quiet=T)
