@@ -1,6 +1,6 @@
 # hidden functions used by read.annot.beast
 
-.cldws <- function(b, lst){
+cldws <- function(b, lst){
 	if (b == "("){
 		lst$currnode <- lst$currnode+1
 		if (length(grep(paste(lst$currnode), lst$opened)) == 1 | length(grep(paste(lst$currnode), lst$closed)) == 1){
@@ -23,7 +23,7 @@
 	}
 }
 
-.process_annot <- function(an){
+process_annot <- function(an){
 	if (is.na(an)){
 		return(NA)
 	} else {
