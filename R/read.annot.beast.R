@@ -39,16 +39,21 @@ read.annot.beast <- function(file){
 		trs <- read.nexus(file)
 		for (itr in 1:length(TREE)){
 			tr <- TREE[[itr]]
-			tr <- sub("tree.* ","", tr)
+			tr <- sub("tree.* \\(","\\(", tr)
 			edges <- list()
 			annot <- list()
 			for (i in strsplit(tr, ":")[[1]]){
-				if (substr(i, nchar(i), nchar(i)) == "]"){
-					start <- gregexpr(pattern ='\\[|\\]', i)[[1]][1]
-					end <- gregexpr(pattern ='\\[|\\]', i)[[1]][2]
+				if (substr(i, nchar(i), nchar(i)) == "]" | substr(i, nchar(i)-1, nchar(i)-1) == "]"){
+					brack <- gregexpr(pattern ='\\[|\\]', i)[[1]]
+					start <- rev(brack)[2]
+					end <- rev(brack)[1]
 					annot <- c(annot, list(substr(i, start, end)))
 					end <- start-1
-					start <- 1
+					if (substr(i, 1, 1) == "["){
+						start <- brack[2]+1
+					} else {
+						start <- 1
+					}
 					edges <- c(edges, list(substr(i, start, end)))
 				}
 			}
@@ -68,11 +73,11 @@ read.annot.beast <- function(file){
 			Nnodes <- length(nodesidx)
 			lst <- list(opened=vector(), closed=vector(), currnode=Ntips)
 			for (b in backbone){
-				lst <- rBt:::cldws(b, lst)
+				lst <- rBt:::.cldws(b, lst)
 			}
 			nodes[nodesidx] <- as.character(lst$closed)
 			nodes <- sapply(nodes, as.numeric)
-			annot <- lapply(annot, rBt:::process_annot)
+			annot <- lapply(annot, rBt:::.process_annot)
 			annot_names <- sort(unlist(lapply(annot, function(x) names(x) )))
 			annot_names <- annot_names[ !duplicated(annot_names) ]
 			annot_mat <- data.frame(matrix(NA, ncol=length(annot_names)+1, nrow=length(nodes)))
@@ -97,12 +102,17 @@ read.annot.beast <- function(file){
 		edges <- list()
 		annot <- list()
 		for (i in strsplit(tr, ":")[[1]]){
-			if (substr(i, nchar(i), nchar(i)) == "]"){
-				start <- gregexpr(pattern ='\\[|\\]', i)[[1]][1]
-				end <- gregexpr(pattern ='\\[|\\]', i)[[1]][2]
+			if (substr(i, nchar(i), nchar(i)) == "]" | substr(i, nchar(i)-1, nchar(i)-1) == "]"){
+				brack <- gregexpr(pattern ='\\[|\\]', i)[[1]]
+				start <- rev(brack)[2]
+				end <- rev(brack)[1]
 				annot <- c(annot, list(substr(i, start, end)))
 				end <- start-1
-				start <- 1
+				if (substr(i, 1, 1) == "["){
+					start <- brack[2]+1
+				} else {
+					start <- 1
+				}
 				edges <- c(edges, list(substr(i, start, end)))
 			}
 		}
@@ -122,11 +132,11 @@ read.annot.beast <- function(file){
 		Nnodes <- length(nodesidx)
 		lst <- list(opened=vector(), closed=vector(), currnode=Ntips)
 		for (b in backbone){
-			lst <- rBt:::cldws(b, lst)
+			lst <- rBt:::.cldws(b, lst)
 		}
 		nodes[nodesidx] <- as.character(lst$closed)
 		nodes <- sapply(nodes, as.numeric)
-		annot <- lapply(annot, rBt:::process_annot)
+		annot <- lapply(annot, rBt:::.process_annot)
 		annot_names <- sort(unlist(lapply(annot, function(x) names(x) )))
 		annot_names <- annot_names[ !duplicated(annot_names) ]
 		annot_mat <- data.frame(matrix(NA, ncol=length(annot_names)+1, nrow=length(nodes)))
