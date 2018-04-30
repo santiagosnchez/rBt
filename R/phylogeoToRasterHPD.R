@@ -71,11 +71,11 @@ phylogeoToRasterHPD <- function(trees, coordnames=NULL, intervals=NULL, resoluti
 		colnames(coords) <- c("x","y","time")
 		coordsNnodes <- rbind(coordsNnodes, coords)
 	}
-	cat("\n")
 	coordsNnodes <- coordsNnodes[-1,]
 	rownames(coordsNnodes) <- 1:dim(coordsNnodes)[1]
 	coordsNnodes <- as.data.frame(coordsNnodes)
 	coordinates(coordsNnodes) <- ~x+y
+	cat("\nChecking intervals ...\r")
 	if (is.null(intervals)){
 		int <- seq(floor(range(coordsNnodes$time)[1]), ceiling(range(coordsNnodes$time)[2]), length.out=10)
 		int <- cbind(int[-10], int[-1])
@@ -86,7 +86,7 @@ phylogeoToRasterHPD <- function(trees, coordnames=NULL, intervals=NULL, resoluti
 	names(all_coords_int) <- round(int[,2],0)
 	empty <- unlist(lapply(all_coords_int, function(x) dim(x)[1] == 0 ))
 	all_coords_int <- all_coords_int[ !empty ]
-	cat("Generating 2D kernel density ...\r")
+	cat("\nGenerating 2D kernel density ...\r")
 	st <- list()
 	for (i in 1:length(all_coords_int)){
 		f1 <- kde2d(all_coords_int[[i]][,1], all_coords_int[[i]][,2], n=100)
@@ -95,14 +95,16 @@ phylogeoToRasterHPD <- function(trees, coordnames=NULL, intervals=NULL, resoluti
 		r[ r[] < 0.05] <- NA
 		st <- c(st, r)
 	}
-	cat("\n")
+	cat("\nGetting global extent ...\r")
 	d <- matrix(unlist(lapply(st, function(x) as.matrix(extent(x)) )), ncol=2, byrow=T)
 	extm <- extent(range(d[,1])[1], range(d[,1])[2], range(d[,2])[1], range(d[,2])[2])
 	r <- raster(ext=extm)
 	res(r) <- resolution
+	cat("\nGetting global extent ...\r")
 	st <- lapply(st, resample, r)
 	st <- stack(st)
 	st <- subset(st, c(rev(1:dim(st)[3])))
 	names(st) <- rev(names(all_coords_int))
+	cat("\nDone\n")
 	return(st)
 }
