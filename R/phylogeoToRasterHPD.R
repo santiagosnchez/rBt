@@ -89,8 +89,8 @@ phylogeoToRasterHPD <- function(trees, coordnames=NULL, intervals=NULL, resoluti
 	cat("\nGenerating 2D kernel density ...\r")
 	st <- list()
 	for (i in 1:length(all_coords_int)){
-		f1 <- kde2d(all_coords_int[[i]][,1], all_coords_int[[i]][,2], n=100)
-		f1$z <- rescale(f1$z, c(0,1))
+		f1 <- MASS::kde2d(all_coords_int[[i]][,1], all_coords_int[[i]][,2], n=100)
+		f1$z <- scales::rescale(f1$z, c(0,1))
 		r <- raster(f1)
 		r[ r[] < 0.05] <- NA
 		st <- c(st, r)
