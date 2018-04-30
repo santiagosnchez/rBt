@@ -18,7 +18,7 @@
 #' @seealso \code{\link{raster}}
 #' @export
 #' @importFrom MASS kde2d
-#' @importFrom scale rescale
+#' @importFrom scales rescale
 #' @examples
 #' file <- system.file("data/HBV.trees", package="rBt")
 #' trees <- read.annot.beast(file)

@@ -13,10 +13,11 @@
 #' @param ... further arguments passed by \code{phylo.plot}
 #' @return plot
 #' @seealso \code{\link{plot.phylo}} \code{\link{rect}}
+#' @importFrom scales alpha
 #' @export
 #' @examples
 #' file <- system.file("data/mcc.tre", package="rBt")
-#' tr <- read.beast.annot(file)
+#' tr <- read.annot.beast(file)
 #' # plot HPD heights on all nodes:
 #' plot.phylo.HPD(tr, cex=0.5, bar.width=0.4, bar.col="red", border=NA)
 #' # with library(scales) for transparency
@@ -42,8 +43,10 @@ plot.phylo.HPD <- function(x, nodes=NULL, bar.width=0.3, bar.col=NA, border=NULL
 	yycrdsl <- yycrds-bar.width
 	maxxlim <- max(ppenv$x.lim)
 	xxmax <- max(ppenv$xx)
-	hpdu <- x$`height_95%_HPD_UPPER`
-	hpdl <- x$`height_95%_HPD_LOWER`
+	hpd <- x$metadata[,"height_95%_HPD"]
+	hpd <- matrix(as.numeric(unlist(strsplit(hpd,","))), ncol=2, byrow=T)
+	hpdl <- hpd[(N+1):dim(hpd)[1],1]
+	hpdu <- hpd[(N+1):dim(hpd)[1],2]
 	xxu <- -(hpdu - xxmax)
 	xxl <- -(hpdl - xxmax)
 	plot(x, x.lim=c(min(xxu, na.rm=TRUE),maxxlim), ...)
