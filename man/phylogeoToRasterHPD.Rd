@@ -4,7 +4,8 @@
 \alias{phylogeoToRasterHPD}
 \title{gphylogeoToRasterHPD}
 \usage{
-phylogeoToRasterHPD(trees, coordnames = NULL, intervals = NULL)
+phylogeoToRasterHPD(trees, coordnames = NULL, intervals = NULL,
+  resolution = 0.1)
 }
 \arguments{
 \item{file}{The path to the MCC file from BEAST}
@@ -48,6 +49,7 @@ plot(st)
 # add a map:
 library(maptools)
 data(wrld_simpl)
+par(mfrow=c(2,2))
 for (i in 1:dim(st)[3]){
    image(st[[i]], col=rev(terrain.colors(20)))
    plot(wrld_simpl, add=T)
