@@ -31,7 +31,7 @@ intervals and adds a x-axis scale.
 }
 \examples{
 file <- system.file("data/mcc.tre", package="rBt")
-tr <- read.beast.annot(file)
+tr <- read.annot.beast(file)
 # plot HPD heights on all nodes:
 plot.phylo.HPD(tr, cex=0.5, bar.width=0.4, bar.col="red", border=NA)
 # with library(scales) for transparency

@@ -1,4 +1,4 @@
-#' rread.annot.beast
+#' read.annot.beast
 #'
 #' @description
 #' This function reads a nexus formated beast file and 

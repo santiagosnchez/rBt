@@ -2,7 +2,7 @@
 % Please edit documentation in R/read.annot.beast.R
 \name{read.annot.beast}
 \alias{read.annot.beast}
-\title{rread.annot.beast}
+\title{read.annot.beast}
 \usage{
 read.annot.beast(file)
 }
