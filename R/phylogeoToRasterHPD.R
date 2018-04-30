@@ -42,12 +42,13 @@
 #' # add a map:
 #' library(maptools)
 #' data(wrld_simpl)
+#' par(mfrow=c(2,2))
 #' for (i in 1:dim(st)[3]){
 #'    image(st[[i]], col=rev(terrain.colors(20)))
 #'    plot(wrld_simpl, add=T)
 #' }
 
-phylogeoToRasterHPD <- function(trees, coordnames=NULL, intervals=NULL){
+phylogeoToRasterHPD <- function(trees, coordnames=NULL, intervals=NULL, resolution=0.1){
 	if (length(grep("metadata", names(trees[[1]]))) == 0){
 		stop("trees need to be read by read.annot.beast")
 	}
@@ -98,17 +99,10 @@ phylogeoToRasterHPD <- function(trees, coordnames=NULL, intervals=NULL){
 	d <- matrix(unlist(lapply(st, function(x) as.matrix(extent(x)) )), ncol=2, byrow=T)
 	extm <- extent(range(d[,1])[1], range(d[,1])[2], range(d[,2])[1], range(d[,2])[2])
 	r <- raster(ext=extm)
-	res(r) <- 0.1
+	res(r) <- resolution
 	st <- lapply(st, resample, r)
 	st <- stack(st)
 	st <- subset(st, c(rev(1:dim(st)[3])))
 	names(st) <- rev(names(all_coords_int))
 	return(st)
-
-	#par(mfrow=c(2,3))
-	#for (i in 1:dim(st)[3]){
-	#	image(st[[i]], col=colorRampPalette(c("white",cols[i]))(20) )
-	#	legend("bottomleft", legend=rev(names(all_coords_int))[i], bg=cols[i], text.col="black", cex=2, adj=c(0.5,0.5))
-	#	plot(wrld_simpl, add=T)
-	#}
 }
