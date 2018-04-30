@@ -100,7 +100,7 @@ phylogeoToRasterHPD <- function(trees, coordnames=NULL, intervals=NULL, resoluti
 	extm <- extent(range(d[,1])[1], range(d[,1])[2], range(d[,2])[1], range(d[,2])[2])
 	r <- raster(ext=extm)
 	res(r) <- resolution
-	cat("\nGetting global extent ...\r")
+	cat("\nResampling raster ...\r")
 	st <- lapply(st, resample, r)
 	st <- stack(st)
 	st <- subset(st, c(rev(1:dim(st)[3])))
