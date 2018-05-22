@@ -10,13 +10,15 @@
 #'                   to the x-axis.
 #' @param trim.y     a \code{numeric} value indicating the upper limit
 #'                   to the y-axis. 
+#' @param y.eq       a \code{boolean} to indicate if the y-axis should be
+#'                   the same for all plots. 
 #' @return a \code{plot}
 #' @export
 #' @examples
 #' file <- system.file("data/EBSP.csv", package="rBt")
 #' RplotEBS(file)
 
-RplotEBS <- function(file=NULL, path=".", pattern=".csv", trim.x=NULL, trim.y=NULL, ...){
+RplotEBS <- function(file=NULL, path=".", pattern=".csv", trim.x=NULL, trim.y=NULL, y.eq=NULL, ...){
 	if (is.null(file)){
 		files <- dir(paste(path), pattern=paste(pattern))
 		if (length(files) == 0)
