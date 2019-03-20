@@ -4,11 +4,14 @@
 #' \code{read.beast.annot} with its 95% HPD node height
 #' intervals and adds a x-axis scale. 
 #'
+#' ** Now includes support for PhyloBayes chronograms **
+#'
 #' @param x annotated \code{phylo} object
 #' @param nodes a vector with node numbers to 
 #'              plot. Default is \code{NULL}
 #' @param bar.width fraction of 1 for bar thickness
 #' @param bar.col bar color
+#' @param pb TRUE if the tree is a chronogram from PhyloBayes with HPD
 #' @param border if bar borders should be drawn. See ?rect.
 #' @param ... further arguments passed by \code{phylo.plot}
 #' @return plot
@@ -34,7 +37,7 @@
 #' names(allanc) <- NULL
 #' plot.phylo.HPD(tr, cex=0.5, bar.width=0.4, bar.col="red", border=NA, nodes=allanc)
 
-plot.phylo.HPD <- function(x, nodes=NULL, bar.width=0.3, bar.col=NA, border=NULL, at = NULL, minor=NULL, ...){
+plot.phylo.HPD <- function(x, nodes=NULL, pb=FALSE, bar.width=0.3, bar.col=NA, border=NULL, at = NULL, minor=NULL, ...){
 	plot(x, plot=F, ...)
 	ppenv <- get("last_plot.phylo",envir=.PlotPhyloEnv)
 	N <- length(x$tip.label)
@@ -43,8 +46,15 @@ plot.phylo.HPD <- function(x, nodes=NULL, bar.width=0.3, bar.col=NA, border=NULL
 	yycrdsl <- yycrds-bar.width
 	maxxlim <- max(ppenv$x.lim)
 	xxmax <- max(ppenv$xx)
-	hpd <- x$metadata[,"height_95%_HPD"]
-	hpd <- matrix(as.numeric(unlist(strsplit(hpd,","))), ncol=2, byrow=T)
+	if (pb){
+		hpd <- sub("_",",",x$node.label)
+		hpd <- matrix(as.numeric(unlist(strsplit(hpd,","))), ncol=2, byrow=T)
+		hpd <- rbind(matrix(0,ncol=2, nrow=length(x$tip.label)), hpd)
+		hpd <- hpd[,c(2,1)]
+	} else {
+		hpd <- x$metadata[,"height_95%_HPD"]
+		hpd <- matrix(as.numeric(unlist(strsplit(hpd,","))), ncol=2, byrow=T)
+	}
 	hpdl <- hpd[(N+1):dim(hpd)[1],1]
 	hpdu <- hpd[(N+1):dim(hpd)[1],2]
 	xxu <- -(hpdu - xxmax)
