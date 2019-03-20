@@ -28,7 +28,7 @@ plot
 }
 \description{
 This function plots a \code{phylo} BEAST tree read by
-\code{read.beast.annot} with its 95% HPD node height
+\code{read.annot.beast} with its 95% HPD node height
 intervals and adds a x-axis scale.
 }
 \details{
