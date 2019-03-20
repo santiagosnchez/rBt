@@ -4,14 +4,16 @@
 \alias{plot.phylo.HPD}
 \title{plot.phylo.HPD}
 \usage{
-plot.phylo.HPD(x, nodes = NULL, bar.width = 0.3, bar.col = NA,
-  border = NULL, at = NULL, minor = NULL, ...)
+plot.phylo.HPD(x, nodes = NULL, pb = FALSE, bar.width = 0.3,
+  bar.col = NA, border = NULL, at = NULL, minor = NULL, ...)
 }
 \arguments{
 \item{x}{annotated \code{phylo} object}
 
 \item{nodes}{a vector with node numbers to 
 plot. Default is \code{NULL}}
+
+\item{pb}{TRUE if the tree is a chronogram from PhyloBayes with HPD}
 
 \item{bar.width}{fraction of 1 for bar thickness}
 
@@ -28,6 +30,9 @@ plot
 This function plots a \code{phylo} BEAST tree read by
 \code{read.beast.annot} with its 95% HPD node height
 intervals and adds a x-axis scale.
+}
+\details{
+** Now includes support for PhyloBayes chronograms **
 }
 \examples{
 file <- system.file("data/mcc.tre", package="rBt")
