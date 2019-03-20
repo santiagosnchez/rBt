@@ -1,7 +1,7 @@
 #' plot.phylo.HPD
 #'
 #' This function plots a \code{phylo} BEAST tree read by
-#' \code{read.beast.annot} with its 95% HPD node height
+#' \code{read.annot.beast} with its 95% HPD node height
 #' intervals and adds a x-axis scale. 
 #'
 #' ** Now includes support for PhyloBayes chronograms **
@@ -52,6 +52,8 @@ plot.phylo.HPD <- function(x, nodes=NULL, pb=FALSE, bar.width=0.3, bar.col=NA, b
 		hpd <- rbind(matrix(0,ncol=2, nrow=length(x$tip.label)), hpd)
 		hpd <- hpd[,c(2,1)]
 	} else {
+		if (is.null(x$metadata))
+			stop("phylo object was not read by read.annot.beast; try with pb=T, perhaps?")
 		hpd <- x$metadata[,"height_95%_HPD"]
 		hpd <- matrix(as.numeric(unlist(strsplit(hpd,","))), ncol=2, byrow=T)
 	}
