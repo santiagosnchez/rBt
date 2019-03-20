@@ -5,7 +5,7 @@
 \title{plot.phylo.HPD}
 \usage{
 plot.phylo.HPD(x, nodes = NULL, bar.width = 0.3, bar.col = NA,
-  border = NULL, ...)
+  border = NULL, at = NULL, minor = NULL, ...)
 }
 \arguments{
 \item{x}{annotated \code{phylo} object}

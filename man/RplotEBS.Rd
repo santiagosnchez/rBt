@@ -5,7 +5,7 @@
 \title{RplotEBS}
 \usage{
 RplotEBS(file = NULL, path = ".", pattern = ".csv", trim.x = NULL,
-  trim.y = NULL, ...)
+  trim.y = NULL, y.eq = NULL, ...)
 }
 \arguments{
 \item{path}{a \code{character} string with the path to 
@@ -19,6 +19,9 @@ to the x-axis.}
 
 \item{trim.y}{a \code{numeric} value indicating the upper limit
 to the y-axis.}
+
+\item{y.eq}{a \code{boolean} to indicate if the y-axis should be
+the same for all plots.}
 }
 \value{
 a \code{plot}
