@@ -21,6 +21,7 @@ Open up an [R](https://www.r-project.org) console:
 * [read.annot.beast](https://github.com/santiagosnchez/rBt/blob/master/R/read.annot.beast.R)(tested with BEAST1 and BEAST2 trees)
 * [which.node](https://github.com/santiagosnchez/rBt/blob/master/R/which.node.R)
 * [plot.phylo.HPD](https://github.com/santiagosnchez/rBt/blob/master/R/plot.phylo.HPD.R)
+* [simpleAxisPhylo](https://github.com/santiagosnchez/rBt/blob/master/R/simpleAxisPhylo.R)
 
 ## Examples
 
