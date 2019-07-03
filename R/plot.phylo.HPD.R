@@ -11,6 +11,7 @@
 #'              plot. Default is \code{NULL}
 #' @param bar.width fraction of 1 for bar thickness
 #' @param bar.col bar color
+#' @param vline add a vertical lines (default: TRUE)
 #' @param pb TRUE if the tree is a chronogram from PhyloBayes with HPD
 #' @param border if bar borders should be drawn. See ?rect.
 #' @param ... further arguments passed by \code{phylo.plot}
@@ -37,7 +38,8 @@
 #' names(allanc) <- NULL
 #' plot.phylo.HPD(tr, cex=0.5, bar.width=0.4, bar.col="red", border=NA, nodes=allanc)
 
-plot.phylo.HPD <- function(x, nodes=NULL, pb=FALSE, bar.width=0.3, bar.col=NA, border=NULL, at = NULL, minor=NULL, ...){
+plot.phylo.HPD <- function(x, nodes=NULL, pb=FALSE, bar.width=0.3, bar.col=NA, border=NULL, 
+			   at = NULL, minor=NULL, vline=TRUE...){
 	op <- par(no.readonly = TRUE)
 	plot(x, plot=F, ...)
 	ppenv <- get("last_plot.phylo",envir=.PlotPhyloEnv)
@@ -70,5 +72,6 @@ plot.phylo.HPD <- function(x, nodes=NULL, pb=FALSE, bar.width=0.3, bar.col=NA, b
 		rect(xxu, yycrdsl, xxl, yycrdsu, border=border, col=bar.col)
 	}
 	ax <- simpleAxisPhylo(at=at, minor=minor)
-	abline(v=ax, lty=2, lwd=0.5)
+	if (vline)
+		abline(v=ax, lty=2, lwd=0.5)
 }
