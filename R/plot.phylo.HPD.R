@@ -39,7 +39,7 @@
 #' plot.phylo.HPD(tr, cex=0.5, bar.width=0.4, bar.col="red", border=NA, nodes=allanc)
 
 plot.phylo.HPD <- function(x, nodes=NULL, pb=FALSE, bar.width=0.3, bar.col=NA, border=NULL, 
-			   at = NULL, minor=NULL, vline=TRUE...){
+			   at = NULL, minor=NULL, vline=TRUE, ...){
 	op <- par(no.readonly = TRUE)
 	plot(x, plot=F, ...)
 	ppenv <- get("last_plot.phylo",envir=.PlotPhyloEnv)
