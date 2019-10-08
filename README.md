@@ -2,7 +2,7 @@
 
 ## Description
 
-`rBt` includes several functions to handle phylogenetic data. Specifically, it includes a function `read.annot.beast` that can read meta-data from [BEAST1](http://beast.community/index.html) or [BEAST2](https://www.beast2.org) tree files, such as maximum clade credibility (MCC) trees and full posterior trees. This package is being developed with different angles phylogenomic species delimitation in mind, but it can be used to many other things like plotting time-trees and visualizing phylogenetic data.
+`rBt` includes several functions to handle phylogenetic data. Specifically, it includes a function `read.annot.beast` that can read meta-data from [BEAST1](http://beast.community/index.html) or [BEAST2](https://www.beast2.org) tree files, such as maximum clade credibility (MCC) trees and full posterior trees. This package is being developed with different angles in mind, but it can be used for things like plotting time-trees, and extracting and visualizing phylogenetic data.
 
 ## Installation
 
