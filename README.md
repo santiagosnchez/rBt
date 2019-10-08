@@ -22,6 +22,7 @@ Open up an [R](https://www.r-project.org) console:
 * [which.node](https://github.com/santiagosnchez/rBt/blob/master/R/which.node.R)
 * [plot.phylo.HPD](https://github.com/santiagosnchez/rBt/blob/master/R/plot.phylo.HPD.R)
 * [simpleAxisPhylo](https://github.com/santiagosnchez/rBt/blob/master/R/simpleAxisPhylo.R)
+* [ltt.df.HPD](https://github.com/santiagosnchez/rBt/blob/master/R/ltt.df.HPD.R)
 
 ## Examples
 
