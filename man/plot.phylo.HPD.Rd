@@ -5,7 +5,8 @@
 \title{plot.phylo.HPD}
 \usage{
 plot.phylo.HPD(x, nodes = NULL, pb = FALSE, bar.width = 0.3,
-  bar.col = NA, border = NULL, at = NULL, minor = NULL, ...)
+  bar.col = NA, border = NULL, at = NULL, minor = NULL,
+  vline = TRUE, ...)
 }
 \arguments{
 \item{x}{annotated \code{phylo} object}
@@ -20,6 +21,8 @@ plot. Default is \code{NULL}}
 \item{bar.col}{bar color}
 
 \item{border}{if bar borders should be drawn. See ?rect.}
+
+\item{vline}{add a vertical lines (default: TRUE)}
 
 \item{...}{further arguments passed by \code{phylo.plot}}
 }
