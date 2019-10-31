@@ -23,6 +23,7 @@ Open up an [R](https://www.r-project.org) console:
 * [plot.phylo.HPD](https://github.com/santiagosnchez/rBt/blob/master/R/plot.phylo.HPD.R)
 * [simpleAxisPhylo](https://github.com/santiagosnchez/rBt/blob/master/R/simpleAxisPhylo.R)
 * [ltt.df.HPD](https://github.com/santiagosnchez/rBt/blob/master/R/ltt.df.HPD.R)
+* [RplotEBS](https://github.com/santiagosnchez/rBt/blob/master/R/RplotEBS.R)
 
 ## Examples
 
