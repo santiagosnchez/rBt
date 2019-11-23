@@ -81,7 +81,7 @@ get_ancestors = function(phy, tips){
         x = 0
         e = tip
         while (x != mrca){
-            x = edge[ which(edge[,2] == e), 1]
+            x = edge[ which(phy$edge[,2] == e), 1]
             nodes = append(nodes, x)
             e = x
         }
