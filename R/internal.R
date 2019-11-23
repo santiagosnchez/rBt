@@ -70,3 +70,22 @@ process_annot <- function(an){
 		return(res)
 	}
 }
+
+# for genealogical sorting index
+get_ancestors = function(phy, tips){
+    if (is.character(tips) == TRUE)
+        tips = sapply(tips, function(x) which(phy$tip.label == x))
+    nodes = vector()
+    mrca = which.node(phy, tips)
+    for (tip in tips){
+        x = 0
+        e = tip
+        while (x != mrca){
+            x = edge[ which(edge[,2] == e), 1]
+            nodes = append(nodes, x)
+            e = x
+        }
+    }
+    nodes = unique(nodes)
+    return(nodes)
+}
