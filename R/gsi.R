@@ -11,8 +11,13 @@
 #'             quantifying lineage divergence. Evolution 62:2411-2422
 #'             \url{doi:10.1111/j.1558-5646.2008.00442.x}
 #' @examples
-#' file <- system.file("data/EBSP.csv", package="rBt")
-#' RplotEBS(file)
+#' set.seed(1)
+#' tr = rtree(10)
+#' groups = split(tr$tip.label, factor(rep(c(1,2,3), c(3,3,4))))
+#' tr_gsi = gsi(tr, groups)
+#' tr_gsi
+#' #     1     2     3 
+#' # 1.000 1.000 0.625
 
 gsi <- function(phy, groups){
     res = vector()
