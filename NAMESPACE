@@ -3,6 +3,7 @@
 export(RplotEBS)
 export(circular.time.slice)
 export(get.tip.spp)
+export(gsi)
 export(ltt.df.HPD)
 export(mcc.trees2multi)
 export(mcc2)
