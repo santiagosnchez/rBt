@@ -32,3 +32,5 @@ Run the function with `?` in front (e.g. `?mcc2`) to access the help files, whic
 ## Citation
 
 Sánchez-Ramírez, S. (2018) rBt: Handy functions for dealing with BEAST trees in R, GitHub repository: https://github.com/santiagosnchez/rBt
+
+Here something
