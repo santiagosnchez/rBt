@@ -1,10 +1,10 @@
 #' mcc2
 #'
 #' This function is based on the \code{\link{maxCladeCred}}
-#' in \code{phangorn}, and it finds the maximum clade 
-#' crebility tree given a list of trees. 
-#' 
-#' 
+#' in \code{phangorn}, and it finds the maximum clade
+#' crebility tree given a list of trees.
+#'
+#'
 #'
 #' @param phy List of \code{multiPhylo} trees
 #' @param annot Inform whether \code{mcc2} should annotate on
@@ -18,11 +18,6 @@
 #' path <- system.file("data/trees/", package="rBt")
 #' trs <- mcc.trees2multi(path)
 #' mcctr <- mcc2(trs)
-#' 
-#' 
-#' 
-#' 
-#' 
 
 mcc2 <- function(phy, annot="pos"){
     if (length(grep("posterior", names(phy[[1]]))) == 1)
@@ -39,7 +34,7 @@ mcc2 <- function(phy, annot="pos"){
         tmp <- phangorn:::checkLabels(phy[[i]], pplabel)
         ppi <- prop.part(tmp)
         indi <- fmatch(ppi, pp)
-        if (any(is.na(indi))) 
+        if (any(is.na(indi)))
             res[i] <- -Inf
         else res[i] <- sum(nb[indi])
     }
@@ -56,7 +51,7 @@ mcc2 <- function(phy, annot="pos"){
             pmt[!is.na(indi),i] <- phy[[i]]$posterior[!is.na(indi)]
         else if (annot == "freq")
             pmt[!is.na(indi),i] <- 1
-        else 
+        else
             stop("annot needs to be either \"pos\" or \"freq\"")
     }
     mcp <- rowSums(pmt, na.rm=TRUE)/L
