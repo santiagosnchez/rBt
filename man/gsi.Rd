@@ -19,8 +19,13 @@ a \code{vector} with gsi values
 Computes genealogical sorting index (Cummings et al. 2008)
 }
 \examples{
-file <- system.file("data/EBSP.csv", package="rBt")
-RplotEBS(file)
+set.seed(1)
+tr = rtree(10)
+groups = split(tr$tip.label, factor(rep(c(1,2,3), c(3,3,4))))
+tr_gsi = gsi(tr, groups)
+tr_gsi
+#     1     2     3 
+# 1.000 1.000 0.625
 }
 \references{
 Cummings, M.P., M.C. Neal, K L. Shaw (2008) A genealogical approach to 

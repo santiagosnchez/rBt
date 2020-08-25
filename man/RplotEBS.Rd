@@ -4,8 +4,15 @@
 \alias{RplotEBS}
 \title{RplotEBS}
 \usage{
-RplotEBS(file = NULL, path = ".", pattern = ".csv", trim.x = NULL,
-  trim.y = NULL, y.eq = NULL, ...)
+RplotEBS(
+  file = NULL,
+  path = ".",
+  pattern = ".csv",
+  trim.x = NULL,
+  trim.y = NULL,
+  y.eq = NULL,
+  ...
+)
 }
 \arguments{
 \item{path}{a \code{character} string with the path to 

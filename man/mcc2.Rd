@@ -18,18 +18,13 @@ mcc tree \code{phylo} object
 }
 \description{
 This function is based on the \code{\link{maxCladeCred}}
-in \code{phangorn}, and it finds the maximum clade 
+in \code{phangorn}, and it finds the maximum clade
 crebility tree given a list of trees.
 }
 \examples{
 path <- system.file("data/trees/", package="rBt")
 trs <- mcc.trees2multi(path)
 mcctr <- mcc2(trs)
-
-
-
-
-
 }
 \seealso{
 \code{\link{maxCladeCred}} \code{\link{prop.part}}

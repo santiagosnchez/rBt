@@ -4,9 +4,18 @@
 \alias{plot.phylo.HPD}
 \title{plot.phylo.HPD}
 \usage{
-plot.phylo.HPD(x, nodes = NULL, pb = FALSE, bar.width = 0.3,
-  bar.col = NA, border = NULL, at = NULL, minor = NULL,
-  vline = TRUE, ...)
+plot.phylo.HPD(
+  x,
+  nodes = NULL,
+  pb = FALSE,
+  bar.width = 0.3,
+  bar.col = NA,
+  border = NULL,
+  at = NULL,
+  minor = NULL,
+  vline = TRUE,
+  ...
+)
 }
 \arguments{
 \item{x}{annotated \code{phylo} object}
