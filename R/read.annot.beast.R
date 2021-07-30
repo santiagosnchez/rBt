@@ -1,15 +1,15 @@
 #' read.annot.beast
 #'
 #' @description
-#' This function reads a nexus formated beast file and 
-#' appends all meta-data and annotations. 
-#' 
+#' This function reads a nexus formated beast file and
+#' appends all meta-data and annotations.
+#'
 #' @details
 #' Node ordering is the same as in the \code{read.tree}/\code{read.nexus}
-#' functions from ape (cladewise). The metadata is stored as a 
+#' functions from ape (cladewise). The metadata is stored as a
 #' data.frame named 'metadata'. Only node posterior
 #' probabilites are passed as an additional numeric vector
-#' named 'posterior'. Note that 'metadata' includes tip 
+#' named 'posterior'. Note that 'metadata' includes tip
 #' annotations as well. The code might be a bit slow for large trees.
 #'
 #' @param file The path to the MCC file from BEAST
@@ -22,7 +22,7 @@
 #' class(tr)
 #' # [1] "phylo"
 #' names(tr)
-#' #[1] "edge"        "edge.length" "Nnode"       "root.edge"   "tip.label"  
+#' #[1] "edge"        "edge.length" "Nnode"       "root.edge"   "tip.label"
 #' #[6] "metadata"    "posterior"
 #' # for add pp to nodes you could try:
 #' plot(tr)
@@ -34,7 +34,7 @@
 
 read.annot.beast <- function(file){
 	TREE <- scan(file=file, what=character(), sep="\n", quiet=T)
-	TREE <- TREE[ grep("^tree", TREE) ]
+	TREE <- TREE[ grep("^[[:space:]]*tree", TREE) ]
 	if (length(TREE) > 1){
 		trs <- read.nexus(file)
 		for (itr in 1:length(TREE)){
@@ -75,7 +75,16 @@ read.annot.beast <- function(file){
 			for (b in backbone){
 				lst <- rBt:::cldws(b, lst)
 			}
-			nodes[nodesidx] <- as.character(lst$closed)
+			tips = vector()
+			tip_num = 1
+			for (i in 1:length(nodes)){
+			    if (nodes[[i]] != "node"){
+					    tips = c(tips, nodes[[i]])
+							nodes[[i]] = tip_num
+							tip_num = tip_num + 1
+					}
+			}
+			nodes[nodesidx] <- lst$closed
 			nodes <- sapply(nodes, as.numeric)
 			annot <- lapply(annot, rBt:::process_annot)
 			annot_names <- sort(unlist(lapply(annot, function(x) names(x) )))
@@ -98,7 +107,7 @@ read.annot.beast <- function(file){
 		return(trs)
 	} else {
 		tr <- TREE[[1]]
-		tr <- sub("tree.* \\(","\\(", tr)
+		tr <- sub("^[[:space:]]*tree.* \\(","\\(", tr)
 		edges <- list()
 		annot <- list()
 		for (i in strsplit(tr, ":")[[1]]){
@@ -134,7 +143,16 @@ read.annot.beast <- function(file){
 		for (b in backbone){
 			lst <- rBt:::cldws(b, lst)
 		}
-		nodes[nodesidx] <- as.character(lst$closed)
+		tips = vector()
+		tip_num = 1
+		for (i in 1:length(nodes)){
+		    if (nodes[[i]] != "node"){
+				    tips = c(tips, nodes[[i]])
+						nodes[[i]] = tip_num
+						tip_num = tip_num + 1
+				}
+		}
+		nodes[nodesidx] <- lst$closed
 		nodes <- sapply(nodes, as.numeric)
 		annot <- lapply(annot, rBt:::process_annot)
 		annot_names <- sort(unlist(lapply(annot, function(x) names(x) )))
@@ -155,12 +173,3 @@ read.annot.beast <- function(file){
 		return(tr)
 	}
 }
-
-
-
-
-
-
-
-
-
