@@ -1,4 +1,4 @@
-#' ltt.df.HPD
+#' ltt.df.hpd
 #'
 #' Produces a list with two data frames; one with
 #' mean node values that can be represented as points
