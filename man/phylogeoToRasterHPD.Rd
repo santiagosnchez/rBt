@@ -4,12 +4,8 @@
 \alias{phylogeoToRasterHPD}
 \title{gphylogeoToRasterHPD}
 \usage{
-phylogeoToRasterHPD(
-  trees,
-  coordnames = NULL,
-  intervals = NULL,
-  resolution = 0.1
-)
+phylogeoToRasterHPD(trees, coordnames = NULL, intervals = NULL,
+  resolution = 0.1)
 }
 \arguments{
 \item{file}{The path to the MCC file from BEAST}

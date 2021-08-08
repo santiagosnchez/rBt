@@ -13,15 +13,15 @@ read.annot.beast(file)
 annotated \code{phylo} object
 }
 \description{
-This function reads a nexus formated beast file and 
+This function reads a nexus formated beast file and
 appends all meta-data and annotations.
 }
 \details{
 Node ordering is the same as in the \code{read.tree}/\code{read.nexus}
-functions from ape (cladewise). The metadata is stored as a 
+functions from ape (cladewise). The metadata is stored as a
 data.frame named 'metadata'. Only node posterior
 probabilites are passed as an additional numeric vector
-named 'posterior'. Note that 'metadata' includes tip 
+named 'posterior'. Note that 'metadata' includes tip
 annotations as well. The code might be a bit slow for large trees.
 }
 \examples{
@@ -30,7 +30,7 @@ tr <- read.annot.beast(file)
 class(tr)
 # [1] "phylo"
 names(tr)
-#[1] "edge"        "edge.length" "Nnode"       "root.edge"   "tip.label"  
+#[1] "edge"        "edge.length" "Nnode"       "root.edge"   "tip.label"
 #[6] "metadata"    "posterior"
 # for add pp to nodes you could try:
 plot(tr)
