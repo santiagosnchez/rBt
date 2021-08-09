@@ -65,7 +65,7 @@ plot.phylo.HPD <- function(x, nodes=NULL, pb=FALSE, bar.width=0.3, bar.col=NA, b
 	xxu <- -(hpdu - xxmax)
 	xxl <- -(hpdl - xxmax)
 	par(op)
-	plot(x, x.lim=c(min(xxu, na.rm=TRUE),maxxlim), ...)
+	plot(x, x.lim=c(min(xxl, na.rm=TRUE),maxxlim), ...)
 	if (!is.null(nodes)){
 		rect(xxu[nodes-N], yycrdsl[nodes-N], xxl[nodes-N], yycrdsu[nodes-N], border=border, col=bar.col)
 	} else {
